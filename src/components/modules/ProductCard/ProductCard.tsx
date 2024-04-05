@@ -3,12 +3,16 @@ import { Cover } from './components/Cover';
 import { Content } from './components/Content';
 import { IProductPayload } from '../../../services/types.d';
 import { Pressable } from 'react-native';
-import { ActionSheet } from './components/ActionSheet';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UIContext } from '../../context';
 
 export interface IProductCardProps {
   /**
-   *
+   * If `true`, the component will have the corresponding beahvior.
+   */
+  isToCart?: boolean;
+  /**
+   * Product payload props.
    */
   product: IProductPayload;
 }
@@ -16,30 +20,18 @@ export interface IProductCardProps {
 export const ProductCard: React.FC<IProductCardProps> = (
   props,
 ): JSX.Element => {
-  const { product } = props;
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const handleActionSheet = () => setIsOpen(!isOpen);
+  const { isToCart, product } = props;
+  const { handleActionSheet } = useContext(UIContext);
 
   return (
-    <>
-      <Pressable onPress={handleActionSheet}>
-        <Box
-          bg="white"
-          borderColor="$secondary400"
-          borderRadius={10}
-          borderWidth={0.2}
-        >
-          <Cover product={product} />
-          <Content product={product} />
-        </Box>
-      </Pressable>
-
-      <ActionSheet
-        handleActionSheet={handleActionSheet}
-        isOpen={isOpen}
-        product={product}
-      />
-    </>
+    <Box
+      bg="white"
+      borderColor="$secondary400"
+      borderRadius={10}
+      borderWidth={0.2}
+    >
+      <Cover product={product} />
+      <Content product={product} />
+    </Box>
   );
 };
