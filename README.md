@@ -15,7 +15,7 @@ Tendencys ecommerce test application.
 
 ![https://img.shields.io/badge/ReactNative-0.73.6-yellow.svg](https://img.shields.io/badge/ReactNative-0.73.6-yellow.svg)
 
-![https://img.shields.io/badge/gluestack-ui-1.0.52-green.svg](https://img.shields.io/badge/gluestack-ui-1.0.52-green.svg)
+![https://img.shields.io/badge/gluestackui-1.0.52-green.svg](https://img.shields.io/badge/gluestackui-1.0.52-green.svg)
 
 ![https://img.shields.io/badge/Expo-50.0.14-black.svg](https://img.shields.io/badge/Expo-50.0.14-black.svg)
 
