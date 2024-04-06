@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import {
+  Actionsheet,
   Box,
+  Button,
   Divider,
   Heading,
   ScrollView,
@@ -9,14 +11,22 @@ import {
 } from '@gluestack-ui/themed';
 import { Container } from '../../components/elements';
 
-import { StatusBar } from 'react-native';
-import { ProductCard } from '../../components/modules';
+import { Pressable, StatusBar } from 'react-native';
+import { ActionSheet, ProductCard } from '../../components/modules';
 
 import { IProductPayload } from '../../services/types.d';
 import { productResources } from '../../services/product';
+import { CartContext, UIContext } from '../../components/context';
 
 export const HomeScreen: React.FC = (): JSX.Element => {
   const [d, setState] = useState<IProductPayload[]>([]);
+  const { isOpen, handleActionSheet } = useContext(UIContext);
+  const { currentProduct, onPrepareProduct } = useContext(CartContext);
+
+  const handleOnStartCart = (product: IProductPayload) => {
+    onPrepareProduct(product);
+    handleActionSheet();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,12 +47,24 @@ export const HomeScreen: React.FC = (): JSX.Element => {
         <VStack space="md">
           <ScrollView>
             <VStack space="2xl">
-              {d.map(({ id, ...item }) => (
-                <ProductCard key={id} product={item} />
+              {d.map((item) => (
+                <Pressable
+                  key={item?.id}
+                  onPress={() => {
+                    handleOnStartCart(item);
+                  }}
+                >
+                  <ProductCard product={item} />
+                </Pressable>
               ))}
             </VStack>
           </ScrollView>
         </VStack>
+        <ActionSheet
+          handleActionSheet={handleActionSheet}
+          isOpen={isOpen}
+          product={currentProduct}
+        />
       </Container>
     </>
   );
