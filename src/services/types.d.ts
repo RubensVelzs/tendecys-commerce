@@ -38,7 +38,7 @@ export interface IProductPayload{
    */
   description?:string;
   /**
-   * 
+   * Product dimensions props.
    */
   dimensions?: IProductDimensions;
   /**
@@ -46,7 +46,7 @@ export interface IProductPayload{
    */
   id?: string;
   /**
-   * 
+   * Product image URL.
    */
   imageUrl?: string;
   /**
@@ -58,11 +58,7 @@ export interface IProductPayload{
    */
   price?:number;
   /**
-   * 
-   */
-  status?:IProductStatus;
-  /**
-   * 
+   * Product units payload props.
    */
   units?:IProductUnits;
 
@@ -70,7 +66,7 @@ export interface IProductPayload{
 
 export interface ICommonResponse{
   /**
-   * 
+   * API common response.
    */
   products: IProductPayload;
 }

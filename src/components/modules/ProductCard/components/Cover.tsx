@@ -3,7 +3,7 @@ import { IProductPayload } from '../../../../services/types.d';
 
 export interface ICoverProps {
   /**
-   *
+   * Product payload props.
    */
   product: IProductPayload;
 }
